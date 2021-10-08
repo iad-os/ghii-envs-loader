@@ -6,12 +6,12 @@ npm install @ghii/envs-loader
 ENVS:
 ```env
 MYAPP_NAME__APP_VERSION=0.0.1
-MYAPP_CONFIGS__0_URL__PATH: '/test',
-MYAPP_CONFIGS__0_URL__LOCAL: 'http://localhost',
-MYAPP_CONFIGS__0_URL__PORT: '3000',
-MYAPP_CONFIGS__1_URL__PATH: '/user',
-MYAPP_CONFIGS__1_URL__LOCAL: 'http://myapp',
-MYAPP_CONFIGS__1_URL__PORT: '8080',
+MYAPP_CONFIGS__0_URL__PATH=/test
+MYAPP_CONFIGS__0_URL__LOCAL=http://localhost
+MYAPP_CONFIGS__0_URL__PORT=3000
+MYAPP_CONFIGS__1_URL__PATH=/user
+MYAPP_CONFIGS__1_URL__LOCAL=http://myapp
+MYAPP_CONFIGS__1_URL__PORT=8080
 MYAPP_ENV=development
 ```
 Configuration in yaml:
