@@ -1,0 +1,99 @@
+{
+  "name": "@ghii/envs-loader",
+  "version": "0.0.1",
+  "description": "A Funny envs loader for ghii configuration manager ",
+  "maintainers": [
+    {
+      "name": "Irene La Bollita",
+      "email": "irene.labollita@iad2.it"
+    }
+  ],
+  "author": "Irene La Bollita <irene.labollita@iad2.it>",
+  "keywords": [
+    "node",
+    "config"
+  ],
+  "main": "dist/lib/envs-loader.js",
+  "types": "dist/types/envs-loader.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iad-os/ghii-envs-loader.git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start": "rollup -c rollup.config.ts -w",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watchAll ",
+    "test:prod": "npm run lint && npm run test -- --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/__test__/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/js-yaml": "^4.0.2",
+    "@types/lodash.chunk": "^4.2.6",
+    "@types/lodash.set": "^4.3.6",
+    "@types/lodash.topairs": "^4.3.6",
+    "@types/node": "^16.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "coveralls": "^3.1.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "jest-config": "^27.0.6",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.0",
+    "typedoc": "^0.21.5",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@ghii/ghii": "0.0.1",
+    "lodash.chunk": "^4.2.0",
+    "lodash.set": "^4.3.2",
+    "lodash.topairs": "^4.3.0",
+    "type-fest": "^2.0.0"
+  }
+}
