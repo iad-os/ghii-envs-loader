@@ -1,6 +1,6 @@
 {
   "name": "@ghii/envs-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Funny envs loader for ghii configuration manager ",
   "maintainers": [
     {
