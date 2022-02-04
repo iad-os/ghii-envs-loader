@@ -31,7 +31,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "lint": "eslint . --ext .ts,.tsx",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "start": "rollup -c rollup.config.ts -w",
