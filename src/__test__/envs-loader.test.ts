@@ -21,11 +21,6 @@ describe('Ghii Envs Loader', () => {
       expect(await envsLoader({ envs: {}, prefix: 'MYAPP' })()).toStrictEqual({});
     });
     it('no match env', async () => {
-      const envs = {
-        TEST_NAME__APP_VERSION: '0.0.1',
-        TEST_CONFIGS__URL__PORT: '3000',
-        TEST_NO__MATCH: 'true',
-      };
       expect(await envsLoader({ envs: {}, prefix: 'MYAPP' })()).toStrictEqual({});
     });
     it('env no matching regex', async () => {
