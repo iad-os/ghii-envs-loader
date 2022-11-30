@@ -1,4 +1,4 @@
-import { Loader } from '@ghii/ghii';
+import type { Loader } from '@ghii/ghii';
 import { camelCase, set, toPairs } from 'lodash';
 
 type EnvsLoaderOptions = {
