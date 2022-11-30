@@ -43,3 +43,5 @@ export function envsLoader({ envs, prefix, buildJsonPath }: EnvsLoaderOptions): 
       }, {} as { [key: string]: string | undefined });
   };
 }
+
+export default envsLoader;
