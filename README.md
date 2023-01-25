@@ -1,5 +1,7 @@
 # GHII - ENVS LOADER
 
+envs loader is a ghii loader. it is used to load the configurations of a nodejs application by reading the right envs that are recognized thanks to the prefix.
+
 ## How to install:
 
 ```sh
@@ -9,7 +11,8 @@ npm install @ghii/envs-loader
 ENVS:
 
 ```env
-MYAPP_NAME__APP_VERSION=0.0.1
+MYAPP_APP__VERSION=0.0.1
+MYAPP_APP__NAME=ghii-test
 MYAPP_CONFIGS__0_URL__PATH=/test
 MYAPP_CONFIGS__0_URL__LOCAL=http://localhost
 MYAPP_CONFIGS__0_URL__PORT=3000
@@ -24,8 +27,9 @@ Configuration in yaml:
 ```yaml
 
 env: development
-name:
-  appVersion: "0.0.1"
+app:
+  version: "0.0.1"
+  name: "ghii-test"
 configs:
   url:
     - path: "/test"
@@ -42,9 +46,10 @@ in JSON:
 ```json
 {
   "env": "development",
-  "name": {
-    "appVersion": "0.0.1"
-  },
+  "app": {
+    "version": "0.0.1",
+    "name": "ghii-test"
+  }
   "configs": {
     "url": [
       {
@@ -90,7 +95,6 @@ const options = ghii((T) =>
 ).loader(envsLoader({ envs: process.env, prefix: 'MYAPP' }));
   //Load configurations via enviroment variables with the prefix MYAPP
 ```
-
 
 ## Related
 
