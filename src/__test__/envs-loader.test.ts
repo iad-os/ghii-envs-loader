@@ -30,19 +30,7 @@ describe('Ghii Envs Loader', () => {
         TEST__F_3A: 'true',
         TEST__33: 'T453S',
       };
-      expect(await envsLoader({ envs })()).toStrictEqual({});
-    });
-    it('without prefix', async () => {
-      const envs = {
-        TEST_NAME__APP_VERSION: '0.0.1',
-        TEST_CONFIGS__URL__PORT: '3000',
-        TEST_NO_MATCH: 'true',
-      };
-      await expect(envsLoader({ envs })()).resolves.toEqual({
-        name: { appVersion: '0.0.1' },
-        configs: { url: { port: '3000' } },
-        noMatch: 'true',
-      });
+      expect(await envsLoader({ envs, prefix: 'MYPREFIX' })()).toStrictEqual({});
     });
     it('check version property configs', async () => {
       const envs = {
@@ -258,7 +246,35 @@ describe('Ghii Envs Loader', () => {
       expect(configs.configs.url[7]).toBeUndefined();
       expect(configs.configs.url[8]).toBeUndefined();
     });
+    it('prefix with one underscore', async () => {
+      const envs = {
+        MY_APP_APP__VERSION: '0.0.1',
+        MY_APP_APP__NAME: 'ghii-test',
+        MY_APP_ENV: 'development',
+      };
+      const configs = await envsLoader({ envs, prefix: 'MY_APP' })();
+      expect(configs).toMatchObject({ app: { version: '0.0.1', name: 'ghii-test' }, env: 'development' });
+    });
+    it('prefix with more underscore', async () => {
+      const envs = {
+        MY_APP_PREFIX_APP__VERSION: '0.0.1',
+        MY_APP_PREFIX_APP__NAME: 'ghii-test',
+        MY_APP_PREFIX_ENV: 'development',
+      };
+      const configs = await envsLoader({ envs, prefix: 'MY_APP_PREFIX' })();
+      expect(configs).toMatchObject({ app: { version: '0.0.1', name: 'ghii-test' }, env: 'development' });
+    });
+    it('prefix with double underscore', async () => {
+      const envs = {
+        MY__PREFIX_APP__VERSION: '0.0.1',
+        MY__PREFIX_APP__NAME: 'ghii-test',
+        MY__PREFIX_ENV: 'development',
+      };
+      const configs = await envsLoader({ envs, prefix: 'MY__PREFIX' })();
+      expect(configs).toMatchObject({ app: { version: '0.0.1', name: 'ghii-test' }, env: 'development' });
+    });
   });
+
   describe('to get object path', () => {
     it('object simple path', () => {
       const groups = {
